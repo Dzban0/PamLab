@@ -1,4 +1,4 @@
-package pl.wsei.pam.lab01.lab01
+package pl.wsei.pam.lab01
 
 import android.os.Bundle
 import android.widget.*
