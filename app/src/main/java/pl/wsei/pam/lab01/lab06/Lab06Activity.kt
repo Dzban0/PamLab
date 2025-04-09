@@ -23,10 +23,8 @@ class Lab06Activity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Create notification channel
         createNotificationChannel()
 
-        // Initialize container in companion object
         Lab06Activity.container = (this.application as TodoApplication).container
 
 
