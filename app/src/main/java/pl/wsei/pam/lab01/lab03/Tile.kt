@@ -22,9 +22,9 @@ data class Tile(val button: ImageButton, var tileResource: Int, val deckResource
     fun removeFromBoard() {
         button.post {
             button.setImageDrawable(null)
-            button.background = null  // Remove any background
+            button.background = null
             button.isEnabled = false
-            button.alpha = 0f  // Make completely transparent
+            button.alpha = 0f
         }
     }
 
