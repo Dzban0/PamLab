@@ -14,7 +14,6 @@ class Lab02Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lab02)
 
-        // Set click listener for all buttons
         findViewById<Button>(R.id.button1).setOnClickListener { handleButtonClick(it) }
         findViewById<Button>(R.id.button2).setOnClickListener { handleButtonClick(it) }
         findViewById<Button>(R.id.button3).setOnClickListener { handleButtonClick(it) }
