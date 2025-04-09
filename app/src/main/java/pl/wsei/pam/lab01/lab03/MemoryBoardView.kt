@@ -134,8 +134,7 @@ class MemoryBoardView(
                 }
             } else {
                 onGameChangeStateListener(MemoryGameEvent(matchedPair.toList(), GameStates.NoMatch))
-
-                // Play sound if enabled using the activity method
+                
                 (activity as? Lab03Activity)?.playNegativeSound()
 
                 animateMismatchedButtons(firstTile.button, secondTile.button) {
@@ -164,17 +163,12 @@ class MemoryBoardView(
     }
 
     fun getState(): IntArray {
-        // Create a state array with one position for each possible tile
         val state = IntArray(rows * cols) { -1 }
 
-        // Fill in values for existing tiles
         tiles.values.forEachIndexed { index, tile ->
-            // Store the resource ID for revealed tiles, -1 for hidden tiles
             state[index] = if (tile.revealed) tile.tileResource else -1
         }
 
-        // For removed tiles (matched pairs), we need to mark them differently
-        // Calculate which indices are missing from the tiles map
         val allPositions = (0 until rows * cols).toSet()
         val existingPositions = tiles.keys.map { key ->
             val (row, col) = key.split("-").map { it.toInt() }
@@ -183,7 +177,6 @@ class MemoryBoardView(
 
         val removedPositions = allPositions - existingPositions
 
-        // Mark removed tiles with a special value (-2)
         removedPositions.forEach { pos ->
             state[pos] = -2
         }
@@ -208,22 +201,17 @@ class MemoryBoardView(
                         }
                     }
                     -2 -> {
-                        // Removed tile (matched pair)
-                        // Find the button for this position and make it invisible
                         val tag = "$i-$j"
                         gridLayout.findViewWithTag<ImageButton>(tag)?.let { button ->
-                            // Completely remove the visual presence of the button
                             button.setImageDrawable(null)
                             button.background = null
                             button.isEnabled = false
                             button.alpha = 0f
                         }
 
-                        // Also remove it from tiles map if it exists
                         tiles.remove(position)
                     }
                     else -> {
-                        // Revealed tile
                         tiles[position]?.let { tile ->
                             tile.revealed = true
                             tile.updateView()

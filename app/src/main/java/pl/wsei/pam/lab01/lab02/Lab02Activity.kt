@@ -29,7 +29,6 @@ class Lab02Activity : AppCompatActivity() {
         val columns = tokens?.getOrNull(1)?.toIntOrNull()
 
         if (rows != null && columns != null) {
-            // Tworzymy Intent i przekazujemy dane
             val intent = Intent(this, Lab03Activity::class.java)
             val size: IntArray = intArrayOf(rows, columns)
             intent.putExtra("size", size)
