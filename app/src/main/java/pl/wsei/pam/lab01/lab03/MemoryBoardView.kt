@@ -51,13 +51,10 @@ class MemoryBoardView(
     private val matchedPair: Stack<Tile> = Stack()
     private val logic: MemoryGameLogic = MemoryGameLogic(cols * rows / 2)
 
-    // Store the original icon arrangement for state restoration
     private val boardIcons: List<Int>
 
     init {
-        // Create a deterministic arrangement of icons based on a consistent seed
-        // This ensures the icons stay in the same positions when recreating the board
-        val random = Random(1234) // Use a fixed seed for consistent shuffling
+        val random = Random(1234)
         boardIcons = (icons.take(cols * rows / 2) + icons.take(cols * rows / 2)).shuffled(random)
 
         createBoard()
@@ -85,8 +82,6 @@ class MemoryBoardView(
             }
         }
     }
-
-    // Rest of your code remains the same
 
 
     private var isChecking = false
@@ -134,7 +129,7 @@ class MemoryBoardView(
                 }
             } else {
                 onGameChangeStateListener(MemoryGameEvent(matchedPair.toList(), GameStates.NoMatch))
-                
+
                 (activity as? Lab03Activity)?.playNegativeSound()
 
                 animateMismatchedButtons(firstTile.button, secondTile.button) {
